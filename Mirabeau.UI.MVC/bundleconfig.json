@@ -1,0 +1,50 @@
+[
+  {
+    "outputFileName": "Content/Bootstrap/css/bootstrap-grid.min.css",
+    "inputFiles": [
+      "Content/Bootstrap/css/bootstrap-grid.css"
+    ]
+  },
+  {
+    "outputFileName": "Content/Bootstrap/css/bootstrap-reboot.min.css",
+    "inputFiles": [
+      "Content/Bootstrap/css/bootstrap-reboot.css"
+    ]
+  },
+  {
+    "outputFileName": "Content/Bootstrap/css/bootstrap.min.css",
+    "inputFiles": [
+      "Content/Bootstrap/css/bootstrap.css"
+    ]
+  },
+  {
+    "outputFileName": "Content/Bootstrap/js/bootstrap.bundle.min.min.js",
+    "inputFiles": [
+      "Content/Bootstrap/js/bootstrap.bundle.min.js"
+    ]
+  },
+  {
+    "outputFileName": "Content/Bootstrap/js/bootstrap.bundle.min.js",
+    "inputFiles": [
+      "Content/Bootstrap/js/bootstrap.bundle.js"
+    ]
+  },
+  {
+    "outputFileName": "Content/Bootstrap/js/bootstrap.min.js",
+    "inputFiles": [
+      "Content/Bootstrap/js/bootstrap.js"
+    ]
+  },
+  {
+    "outputFileName": "Content/login.min.css",
+    "inputFiles": [
+      "Content/login.css"
+    ]
+  },
+  {
+    "outputFileName": "Content/css/login.min.css",
+    "inputFiles": [
+      "Content/css/login.css"
+    ]
+  }
+]

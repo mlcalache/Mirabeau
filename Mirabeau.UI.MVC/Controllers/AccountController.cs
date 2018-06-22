@@ -2,6 +2,7 @@
 using Mirabeau.Domain.Entities;
 using Mirabeau.Domain.Interfaces.Services;
 using Mirabeau.UI.MVC.Models;
+using Newtonsoft.Json;
 using System.Web.Mvc;
 
 namespace Mirabeau.UI.MVC.Controllers
@@ -33,7 +34,7 @@ namespace Mirabeau.UI.MVC.Controllers
         }
 
         [HttpPost]
-        public ActionResult Index(LoginViewModel login)
+        public ActionResult Login(LoginViewModel login)
         {
             var user = _mapper.Map<User>(login);
 
@@ -41,10 +42,25 @@ namespace Mirabeau.UI.MVC.Controllers
 
             if (loginValidated)
             {
+                SetUserCookie(login.Username);
+
                 return RedirectToAction("Index", "Home");
             }
 
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult Logout()
+        {
+            RemoveCookies(USERCOOKIE);
+
+            return RedirectToAction("Index");
+        }
+
+        private void SetUserCookie(string username)
+        {
+            var userCookie = CreateCookie(USERCOOKIE, JsonConvert.SerializeObject(username), CookieExpirationInMinutes);
         }
 
         #endregion Actions

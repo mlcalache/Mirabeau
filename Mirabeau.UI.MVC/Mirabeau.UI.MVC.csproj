@@ -90,6 +90,7 @@
     <Reference Include="SimpleInjector.Integration.Web.Mvc, Version=4.0.6.0, Culture=neutral, PublicKeyToken=984cb50dea722e99, processorArchitecture=MSIL">
       <HintPath>..\packages\SimpleInjector.Integration.Web.Mvc.4.0.6\lib\net40\SimpleInjector.Integration.Web.Mvc.dll</HintPath>
     </Reference>
+    <Reference Include="System.IdentityModel" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net461\System.ValueTuple.dll</HintPath>
@@ -138,7 +139,29 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Bootstrap\css\bootstrap-grid.css" />
+    <Content Include="Content\Bootstrap\css\bootstrap-grid.min.css">
+      <DependentUpon>bootstrap-grid.css</DependentUpon>
+    </Content>
+    <Content Include="Content\Bootstrap\css\bootstrap-reboot.css" />
+    <Content Include="Content\Bootstrap\css\bootstrap-reboot.min.css">
+      <DependentUpon>bootstrap-reboot.css</DependentUpon>
+    </Content>
+    <Content Include="Content\Bootstrap\css\bootstrap.css" />
+    <Content Include="Content\Bootstrap\css\bootstrap.min.css">
+      <DependentUpon>bootstrap.css</DependentUpon>
+    </Content>
+    <Content Include="Content\Bootstrap\js\bootstrap.js" />
+    <Content Include="Content\Bootstrap\js\bootstrap.min.js">
+      <DependentUpon>bootstrap.js</DependentUpon>
+    </Content>
+    <Content Include="Content\css\login.css" />
+    <Content Include="Content\css\login.min.css">
+      <DependentUpon>login.css</DependentUpon>
+    </Content>
+    <Content Include="Content\images\mirabeau-logo-transparent.svg" />
     <Content Include="Global.asax" />
+    <None Include="bundleconfig.json" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -172,6 +195,8 @@
     <None Include="packages.config" />
     <Content Include="Views\Account\Index.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\_AirportListItem.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -182,12 +207,15 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Base\" />
-    <Folder Include="Views\Home\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Mirabeau.Domain\Mirabeau.Domain.csproj">
       <Project>{B558ABB6-FCEA-4E31-9B39-9726ADB6437C}</Project>
       <Name>Mirabeau.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Mirabeau.Infra.CrossCutting.Helpers\Mirabeau.Infra.CrossCutting.Helpers.csproj">
+      <Project>{D8D20CE9-67ED-4A8B-A9AF-C5E5CAEAAC91}</Project>
+      <Name>Mirabeau.Infra.CrossCutting.Helpers</Name>
     </ProjectReference>
     <ProjectReference Include="..\Mirabeau.Infra.CrossCutting.IoC\Mirabeau.Infra.CrossCutting.IoC.csproj">
       <Project>{6FE0A465-79EE-4057-A785-083BA3ECF56E}</Project>

@@ -1,9 +1,11 @@
 ﻿using AutoMapper;
 using Mirabeau.Domain.Interfaces.Services;
+using Mirabeau.UI.MVC.Models;
 using System.Web.Mvc;
 
 namespace Mirabeau.UI.MVC.Controllers
 {
+    [Authorize]
     public class HomeController : BaseController
     {
         #region Private vars
@@ -22,13 +24,26 @@ namespace Mirabeau.UI.MVC.Controllers
 
         #endregion Ctors
 
-        #region Actions
+        #region MVC Actions
 
         public ActionResult Index()
         {
             return View();
         }
 
-        #endregion Actions
+        #endregion MVC Actions
+
+        #region AJAX Actions
+
+        public ActionResult GetEuropeanAirports()
+        {
+            var europeanAirports = _airportExhibitionService.GetEuropeanAirports();
+
+            var europeanAirportsViewModel = _mapper.Map<AirportViewModel>(europeanAirports);
+
+            return Json(new { airports = europeanAirportsViewModel }, JsonRequestBehavior.AllowGet);
+        }
+
+        #endregion AJAX Actions
     }
 }

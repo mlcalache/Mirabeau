@@ -7,7 +7,7 @@ namespace Mirabeau.Application.Services
     {
         public bool ValidateLogin(User user)
         {
-            throw new System.NotImplementedException();
+            return user.Username == "admin" && user.Password == "123";
         }
     }
 }
