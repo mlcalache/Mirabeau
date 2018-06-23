@@ -10,7 +10,7 @@ namespace Mirabeau.UI.MVC.AutoMapper
         {
             return new MapperConfiguration(p =>
             {
-                var assemblies = AppDomain.CurrentDomain.GetAssemblies().Where(a => a.FullName.Contains("AlbelliTest."));
+                var assemblies = AppDomain.CurrentDomain.GetAssemblies().Where(a => a.FullName.Contains("Mirabeau."));
 
                 p.AddProfiles(assemblies);
             });

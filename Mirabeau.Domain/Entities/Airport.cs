@@ -4,15 +4,15 @@
     {
         // Variables are not following code specifications because it represents exactly the model from JSON
 
-        public string continent { get; private set; }
-        public string iata { get; private set; }
-        public string iso { get; private set; }
-        public double lat { get; private set; }
-        public double lon { get; private set; }
-        public string name { get; private set; }
-        public string size { get; private set; }
-        public int status { get; private set; }
-        public string type { get; private set; }
+        public string continent { get; set; }
+        public string iata { get; set; }
+        public string iso { get; set; }
+        public double lat { get; set; }
+        public double lon { get; set; }
+        public string name { get; set; }
+        public string size { get; set; }
+        public int status { get; set; }
+        public string type { get; set; }
 
         public static class AirportFactory
         {

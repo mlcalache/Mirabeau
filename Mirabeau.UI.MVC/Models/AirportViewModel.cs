@@ -5,30 +5,30 @@ namespace Mirabeau.UI.MVC.Models
     public class AirportViewModel
     {
         [DisplayName("Continent")]
-        public string Continent { get; private set; }
+        public string Continent { get; set; }
 
         [DisplayName("IATA")]
-        public string IATA { get; private set; }
+        public string IATA { get; set; }
 
         [DisplayName("ISO")]
-        public string ISO { get; private set; }
+        public string ISO { get; set; }
 
         [DisplayName("Latitude")]
-        public double Latitude { get; private set; }
+        public double Latitude { get; set; }
 
         [DisplayName("Longitude")]
-        public double Longitude { get; private set; }
+        public double Longitude { get; set; }
 
         [DisplayName("Name")]
-        public string Name { get; private set; }
+        public string Name { get; set; }
 
         [DisplayName("Size")]
-        public string Size { get; private set; }
+        public string Size { get; set; }
 
         [DisplayName("Status")]
-        public int Status { get; private set; }
+        public int Status { get; set; }
 
         [DisplayName("Type")]
-        public string Type { get; private set; }
+        public string Type { get; set; }
     }
 }

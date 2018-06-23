@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Mirabeau.Domain.Interfaces.Services;
 using Mirabeau.UI.MVC.Models;
+using System.Collections.Generic;
 using System.Web.Mvc;
 
 namespace Mirabeau.UI.MVC.Controllers
@@ -39,9 +40,9 @@ namespace Mirabeau.UI.MVC.Controllers
         {
             var europeanAirports = _airportExhibitionService.GetEuropeanAirports();
 
-            var europeanAirportsViewModel = _mapper.Map<AirportViewModel>(europeanAirports);
+            var europeanAirportsViewModel = _mapper.Map<List<AirportViewModel>>(europeanAirports);
 
-            return Json(new { airports = europeanAirportsViewModel }, JsonRequestBehavior.AllowGet);
+            return PartialView("_AirportListItem", europeanAirportsViewModel);
         }
 
         #endregion AJAX Actions

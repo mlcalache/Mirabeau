@@ -159,6 +159,7 @@
     <Content Include="Content\css\login.min.css">
       <DependentUpon>login.css</DependentUpon>
     </Content>
+    <Content Include="Content\images\loading.gif" />
     <Content Include="Content\images\mirabeau-logo-transparent.svg" />
     <Content Include="Global.asax" />
     <None Include="bundleconfig.json" />
