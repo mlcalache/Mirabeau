@@ -155,22 +155,51 @@
     <Content Include="Content\Bootstrap\js\bootstrap.min.js">
       <DependentUpon>bootstrap.js</DependentUpon>
     </Content>
+    <Content Include="Content\css\app.css" />
+    <Content Include="Content\css\app.min.css">
+      <DependentUpon>app.css</DependentUpon>
+    </Content>
+    <Content Include="Content\css\toastr.css" />
+    <Content Include="Content\css\toastr.min.css">
+      <DependentUpon>toastr.css</DependentUpon>
+    </Content>
+    <Content Include="Content\images\csharp.jpg" />
+    <Content Include="Content\Popper\popper.js" />
     <Content Include="Content\css\login.css" />
     <Content Include="Content\css\login.min.css">
       <DependentUpon>login.css</DependentUpon>
     </Content>
     <Content Include="Content\images\loading.gif" />
     <Content Include="Content\images\mirabeau-logo-transparent.svg" />
+    <Content Include="Content\Popper\popper.min.js">
+      <DependentUpon>popper.js</DependentUpon>
+    </Content>
     <Content Include="Global.asax" />
     <None Include="bundleconfig.json" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\jquery-1.10.2.intellisense.min.js">
+      <DependentUpon>jquery-1.10.2.intellisense.js</DependentUpon>
+    </Content>
     <Content Include="Scripts\jquery-1.10.2.js" />
-    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js">
+      <DependentUpon>jquery-1.10.2.js</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate-vsdoc.min.js">
+      <DependentUpon>jquery.validate-vsdoc.js</DependentUpon>
+    </Content>
     <Content Include="Scripts\jquery.validate.js" />
-    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.min.js">
+      <DependentUpon>jquery.validate.js</DependentUpon>
+    </Content>
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js">
+      <DependentUpon>jquery.validate.unobtrusive.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\toastr.js" />
+    <Content Include="Scripts\toastr.min.js">
+      <DependentUpon>toastr.js</DependentUpon>
+    </Content>
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -184,11 +213,13 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Enums\AddErrorsOnEnum.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AirportViewModel.cs" />
     <Compile Include="Models\LoginViewModel.cs" />
+    <Compile Include="Models\ToastMessageViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -198,6 +229,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\_AirportListItem.cshtml" />
+    <Content Include="Views\Home\_ModalDistance.cshtml" />
+    <Content Include="Views\Shared\_ToastrBuilder.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -210,6 +243,10 @@
     <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Mirabeau.Application\Mirabeau.Application.csproj">
+      <Project>{01A932C7-4E1F-4405-94CB-560152D534AE}</Project>
+      <Name>Mirabeau.Application</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Mirabeau.Domain\Mirabeau.Domain.csproj">
       <Project>{B558ABB6-FCEA-4E31-9B39-9726ADB6437C}</Project>
       <Name>Mirabeau.Domain</Name>

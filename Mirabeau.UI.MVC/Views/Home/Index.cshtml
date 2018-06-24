@@ -12,26 +12,12 @@
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Content/Popper/popper.min.js"></script>
     <link href="~/Content/Bootstrap/css/bootstrap.min.css" rel="stylesheet" />
     <script src="~/Content/Bootstrap/js/bootstrap.min.js"></script>
-    <style>
-        .loading-background {
-            display: none;
-            position: fixed;
-            z-index: 1051;
-            width: 100%;
-            height: 100%;
-            background-color: black;
-            background-color: rgba(0,0,0,.50)
-        }
-
-        .loading-container {
-            position: absolute;
-            left: 45%;
-            top: 50%;
-            /*margin-left: -150px;*/
-        }
-    </style>
+    <link href="~/Content/css/app.min.css" rel="stylesheet" />
+    <link href="~/Content/css/toastr.css" rel="stylesheet" />
+    <script src="~/Scripts/toastr.js"></script>
 </head>
 <body>
 
@@ -42,7 +28,9 @@
     </div>
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="https://www.mirabeau.nl/">Mirabeau</a>
+        <a class="navbar-brand" href="@Url.Action("Index", "Home")">
+            <img src="~/Content/images/csharp.jpg" class="logo" />
+        </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -50,18 +38,11 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="@Url.Action("Index", "Home")">Home <span class="sr-only">(current)</span></a>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Dropdown
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Something else here</a>
-                    </div>
+
+                <li class="nav-item active">
+                    <a class="nav-link" href="http://www.mirabeau.com" target="_blank">Mirabeau Website <span class="sr-only">(current)</span></a>
                 </li>
             </ul>
             @using (Html.BeginForm("Logout", "Account", FormMethod.Post, new { @class = "form-logout" }))
@@ -70,44 +51,81 @@
             }
         </div>
     </nav>
+    <div class="container">
+        <p>
+            <button class="btn btn-primary btn-sm" type="button" data-toggle="collapse" data-target="#divFilters" aria-expanded="false" aria-controls="divFilters" id="btnFilters">
+                Open filters
+            </button>
+        </p>
 
-    <table class="table" id="tbl-airports">
-        <thead>
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Continent)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.IATA)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.ISO)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Latitude)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Longitude)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Name)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Size)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Status)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Type)
-                </th>
-                <th></th>
-            </tr>
-        </thead>
+        <div class="collapse" id="divFilters">
+            <div class="row">
+                <div class="col-sm">
+                    <div class="form-group">
+                        <label for="txtIATAFilter">IATA</label>
+                        <input type="text" class="form-control" id="txtIATAFilter" aria-describedby="IATAHelp" placeholder="Enter an IATA code">
+                        <small id="IATAHelp" class="form-text text-muted"><a href="https://en.wikipedia.org/wiki/IATA_airport_code" target="_blank">IATA code</a></small>
+                    </div>
+                </div>
+                <div class="col-sm">
+                    <div class="form-group">
+                        <label for="txtISOFilter">ISO</label>
+                        <input type="text" class="form-control" id="txtISOFilter" placeholder="Enter an ISO code">
+                    </div>
+                </div>
+                <div class="col-sm">
+                    <div class="form-group">
+                        <label for="txtNameFilter">Name</label>
+                        <input type="text" class="form-control" id="txtNameFilter" placeholder="Enter an Aiport name">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <button class="btn btn-primary btn-sm" id="btnApplyFilter" title="Click here to apply the filter." disabled>Apply filter</button>
+                    <button class="btn btn-warning btn-sm" id="btnClearFilter" title="Click here to clear the applied filter and reset the results.">Clear filter</button>
+                </div>
+            </div>
+        </div>
 
-        <tbody></tbody>
+        <table class="table" id="tbl-airports">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Continent)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.IATA)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ISO)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Latitude)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Longitude)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Name)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Size)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Status)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Type)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
 
-    </table>
+    @Html.Partial("_ModalDistance")
 
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
     <script>
@@ -128,21 +146,106 @@
             $(".loading-background").fadeOut();
         }
 
+        function addToastMessage(message, toastType) {
+            var optionsOverride = { "closeButton": true, "newestOnTop": true, "timeOut": "10000", "escapeHtml": false }
 
-        $(function () {
+            toastr[toastType](message, '', optionsOverride);
+        }
 
-            $("#tbl-airports > tbody").load("@Url.Action("GetEuropeanAirports", "Home")");
+        function getAirports(filtersParams) {
+            $("#tbl-airports > tbody").load("@Url.Action("GetEuropeanAirports", "Home")", { "filters" : filtersParams });
+        };
 
-            @*$.ajax({
-                url: "@Url.Action("GetEuropeanAirports", "Home")",
+        function enableDisableButtonFilters() {
+            if ($("#txtIATAFilter").val() != "" || $("#txtISOFilter").val() != "" || $("#txtNameFilter").val()) {
+                $("#btnApplyFilter").removeAttr('disabled');
+            } else {
+                $("#btnApplyFilter").attr('disabled', 'disabled');
+            }
+        }
+
+        function getDistance(iata1, iata2) {
+
+            $("#lblDistanceResult").text("");
+
+            $.ajax({
+                url: "@Url.Action("GetDistance", "Home")",
                 type: "GET",
-                success: function () {
-                    alert("hi");
+                data: { iata1, iata2 },
+                success: function (distanceResult) {
+                    $.each(distanceResult.Notifications, function (index, notification) {
+                        addToastMessage(notification, 'warning');
+                    });
+
+                    $("#lblDistanceResult").text(distanceResult.Distance);
+
+                    setDistanceGetUrlValue(distanceResult.Url);
                 },
                 error: function (xhr, textStatus, errorThrown) {
                     alert("ERROR!\n" + xhr + "\n" + textStatus + "\n" + errorThrown);
                 }
-            });*@
+            });
+        }
+
+        function ResetDistance() {
+            $("#txtAiportDestination").val("");
+            $("#lblDistanceResult").text("");
+            $("#lnkDistanceGetUrlValue").attr("href", "#");
+            $("#lnkDistanceGetUrlValue").hide();
+        }
+
+        function setDistanceGetUrlValue(url) {
+            $("#lnkDistanceGetUrlValue").attr("href", url);
+            $("#lnkDistanceGetUrlValue").text(url);
+            $("#lnkDistanceGetUrlValue").show();
+        }
+
+        $(function () {
+            $("#btnFilters").on("click", function () {
+                if (this.innerText == "Open filters") {
+                    this.innerText = "Close filters";
+                } else {
+                    this.innerText = "Open filters";
+                }
+            });
+
+            $("#btnApplyFilter").on("click", function () {
+                var iataFilter = $("#txtIATAFilter").val();
+                var isoFilter = $("#txtISOFilter").val();
+                var nameFilter = $("#txtNameFilter").val();
+
+                getAirports({ "IATA": iataFilter, "ISO": isoFilter, "Name": nameFilter });
+            });
+
+            $("#btnClearFilter").on("click", function () {
+                $("#txtIATAFilter").val("");
+                $("#txtISOFilter").val("");
+                $("#txtNameFilter").val("");
+
+                getAirports();
+            });
+
+            $("#txIATAFilter").change(function () {
+                enableDisableButtonFilters();
+            });
+
+            $("#txtISOFilter").change(function () {
+                enableDisableButtonFilters();
+            });
+
+            $("#txtNameFilter").change(function () {
+                enableDisableButtonFilters();
+            });
+
+            $("#btnResetDistance").on("click", function () {
+                ResetDistance();
+            })
+
+            $('#modalDistance').on('shown.bs.modal', function () {
+                $('#txtAiportDestination').focus();
+            })  
+
+            getAirports();
         });
     </script>
 </body>

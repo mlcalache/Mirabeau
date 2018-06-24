@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Mirabeau.Domain.Entities;
+using Mirabeau.Domain.Interfaces.Notifications;
 using Mirabeau.Domain.Interfaces.Services;
 using Mirabeau.UI.MVC.Models;
 using Newtonsoft.Json;
@@ -18,8 +19,8 @@ namespace Mirabeau.UI.MVC.Controllers
 
         #region Ctors
 
-        public AccountController(IMapper mapper, ILoginService loginService)
-           : base(mapper)
+        public AccountController(IMapper mapper, IDomainNotificationHandler notification, ILoginService loginService)
+           : base(mapper, notification)
         {
             _loginService = loginService;
         }

@@ -30,7 +30,30 @@
             @Html.DisplayFor(modelItem => item.Type)
         </td>
         <td>
-            <a href="#">View on map</a>
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-success btn-sm btnShowDistanceFromAirport" data-toggle="modal" data-target="#modalDistance" id="btnShowDistanceFromAirport" airport="@item.IATA">
+                Show distance
+            </button>
         </td>
     </tr>
 }
+
+<script>
+
+    $(function () {
+        $(".btnShowDistanceFromAirport").on("click", function () {
+            var iataOrigin = $(this).attr("airport");
+            $("#txtAiportOrigin").val(iataOrigin);
+            $("#txtAiportOrigin").attr("disabled", "disabled");
+
+            ResetDistance();
+        });
+
+        $("#btnGetDistance").on("click", function () {
+            var iata1 = $("#txtAiportOrigin").val();
+            var iata2 = $("#txtAiportDestination").val();
+            getDistance(iata1, iata2);
+        });
+    });
+
+</script>

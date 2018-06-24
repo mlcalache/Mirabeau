@@ -46,5 +46,59 @@
     "inputFiles": [
       "Content/css/login.css"
     ]
+  },
+  {
+    "outputFileName": "Content/Popper/popper.min.js",
+    "inputFiles": [
+      "Content/Popper/popper.js"
+    ]
+  },
+  {
+    "outputFileName": "Content/css/app.min.css",
+    "inputFiles": [
+      "Content/css/app.css"
+    ]
+  },
+  {
+    "outputFileName": "Content/css/toastr.min.css",
+    "inputFiles": [
+      "Content/css/toastr.css"
+    ]
+  },
+  {
+    "outputFileName": "Scripts/toastr.min.js",
+    "inputFiles": [
+      "Scripts/toastr.js"
+    ]
+  },
+  {
+    "outputFileName": "Scripts/jquery-1.10.2.intellisense.min.js",
+    "inputFiles": [
+      "Scripts/jquery-1.10.2.intellisense.js"
+    ]
+  },
+  {
+    "outputFileName": "Scripts/jquery-1.10.2.min.js",
+    "inputFiles": [
+      "Scripts/jquery-1.10.2.js"
+    ]
+  },
+  {
+    "outputFileName": "Scripts/jquery.validate-vsdoc.min.js",
+    "inputFiles": [
+      "Scripts/jquery.validate-vsdoc.js"
+    ]
+  },
+  {
+    "outputFileName": "Scripts/jquery.validate.min.js",
+    "inputFiles": [
+      "Scripts/jquery.validate.js"
+    ]
+  },
+  {
+    "outputFileName": "Scripts/jquery.validate.unobtrusive.min.js",
+    "inputFiles": [
+      "Scripts/jquery.validate.unobtrusive.js"
+    ]
   }
 ]
