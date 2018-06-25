@@ -1,23 +1,30 @@
 # Mirabeau
-Mirabeau technical test
+
+Mirabeau technical test by Matheus de Lara Calache.
+
+Date: June 24th 2018.
 
 ------
+
+## Menu
 
 Jump to:
   [Used tools and frameworks](#used-tools-and-frameworks) |
   [Cloning this repository](#cloning-this-repository) |
+  [Instructions to run](#instructions-to-run) |
   [Fixed credential to sign-in to the website](#fixed-credential-to-sign-in-to-the-website) |
   [About the architecture](#about-the-architecture)
   
 ------
 
-### Used tools and frameworks
+## Used tools and frameworks
 - [Visual Studio 2017](https://visualstudio.microsoft.com/)
 - [Font-Awesome Free 5.0.13](https://fontawesome.com/)
 - [jQuery 1.10.2](https://jquery.com/)
 - [Bootstrap v4.1.1](https://getbootstrap.com/)
 - [Simple Injector](https://simpleinjector.org/)
 - [AutoMapper](https://automapper.org/)
+- [OWIN](owin.org/)
 
 ------
 
@@ -27,6 +34,31 @@ URL to clone this repository.
 ```shell
 git clone https://github.com/mlcalache/Mirabeau.git
 ```
+-----
+
+## Instructions to run
+
+There are two runnable projects: Mirabeau.UI.MVC and Mirabeau.API.
+
+The Mirabeau.UI.MVC is configured to run on the address http://localhost:51200/.
+
+The Mirabeau.API is configured to run on the address http://localhost:56054/.
+
+It is advisable to set both for startup projects if you would like to debug both.
+
+If you change the address for the Mirabeau.API project, you should edit the app settings key for the Base API Url and the API Authentication Url in the Mirabeau.UI.MVC web.config.
+
+```shell
+<add key="ApiBaseUrl" value="http://localhost:56054/api/" />
+<add key="ApiAuthenticationUrl" value="http://localhost:56054/token" />
+```
+
+Both project's web.config files have the app settings key for the JSON url to get the airports.
+
+```shell
+<add key="UrlJsonAirport" value="https://raw.githubusercontent.com/jbrooksuk/JSON-Airports/master/airports.json" />
+```
+
 -----
 
 ## Fixed credential to sign-in to the website
