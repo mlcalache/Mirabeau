@@ -6,6 +6,8 @@ Date: June 24th 2018.
 
 ------
 
+## Menu
+
 Jump to:
   [Used tools and frameworks](#used-tools-and-frameworks) |
   [Cloning this repository](#cloning-this-repository) |
@@ -15,7 +17,7 @@ Jump to:
   
 ------
 
-### Used tools and frameworks
+## Used tools and frameworks
 - [Visual Studio 2017](https://visualstudio.microsoft.com/)
 - [Font-Awesome Free 5.0.13](https://fontawesome.com/)
 - [jQuery 1.10.2](https://jquery.com/)
