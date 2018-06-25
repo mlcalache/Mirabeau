@@ -18,6 +18,7 @@ Jump to:
 - [Bootstrap v4.1.1](https://getbootstrap.com/)
 - [Simple Injector](https://simpleinjector.org/)
 - [AutoMapper](https://automapper.org/)
+- [OWIN](owin.org/)
 
 ------
 
