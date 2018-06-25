@@ -12,6 +12,7 @@ Jump to:
   [Used tools and frameworks](#used-tools-and-frameworks) |
   [Cloning this repository](#cloning-this-repository) |
   [Instructions to run](#instructions-to-run) |
+  [Postman Collection](#postman-collection) |
   [Fixed credential to sign-in to the website](#fixed-credential-to-sign-in-to-the-website) |
   [About the architecture](#about-the-architecture)
   
@@ -25,6 +26,7 @@ Jump to:
 - [Simple Injector](https://simpleinjector.org/)
 - [AutoMapper](https://automapper.org/)
 - [OWIN](owin.org/)
+- [Postman](https://www.getpostman.com/)
 
 ------
 
@@ -58,6 +60,22 @@ Both project's web.config files have the app settings key for the JSON url to ge
 ```shell
 <add key="UrlJsonAirport" value="https://raw.githubusercontent.com/jbrooksuk/JSON-Airports/master/airports.json" />
 ```
+
+-----
+
+## Postman Collection
+
+I have also added the Postman collection into this repository.
+
+It facilitates the developer to get the API calls pre-configured.
+
+Just import the collection into the Postman tool.
+
+```shell
+https://github.com/mlcalache/Mirabeau/blob/master/Postman/Mirabeau.postman_collection.json
+```
+
+Postman : https://www.getpostman.com/
 
 -----
 
