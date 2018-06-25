@@ -3,6 +3,8 @@ using Mirabeau.Domain.Interfaces.Notifications;
 using Mirabeau.Infra.CrossCutting.Helpers;
 using Mirabeau.UI.MVC.Enums;
 using Mirabeau.UI.MVC.Models;
+using Newtonsoft.Json;
+using RestSharp;
 using System;
 using System.Security.Principal;
 using System.Threading;
@@ -16,8 +18,9 @@ namespace Mirabeau.UI.MVC.Controllers
         #region Protected consts
 
         protected const int PADRAO_TIMEOUT_TOAST = 3000;
+        protected const string TOASTR = "Toastr";
+        protected const string TOKENCOOKIE = "MirabeauTokenCookie";
         protected const string USERCOOKIE = "MirabeauCookie";
-        private const string TOASTR = "Toastr";
 
         #endregion Protected consts
 
@@ -26,6 +29,7 @@ namespace Mirabeau.UI.MVC.Controllers
         protected readonly IMapper _mapper;
         protected int CookieExpirationInMinutes => Convert.ToInt32(ConfigurationManagerHelper.CookieExpirationInMinutes);
         protected IDomainNotificationHandler _notification { get; set; }
+        protected string Token => GetCookie(TOKENCOOKIE);
 
         #endregion Protected vars
 
@@ -85,6 +89,18 @@ namespace Mirabeau.UI.MVC.Controllers
             return toastMessage;
         }
 
+        protected string GetCookie(string cookieName)
+        {
+            var cookie = Request.Cookies[cookieName];
+
+            if (cookie != null)
+            {
+                return cookie.Value;
+            }
+
+            return string.Empty;
+        }
+
         protected System.Web.HttpCookie CreateCookie(string cookieName, string cookieValue, int cookieExpires)
         {
             var cookie = new System.Web.HttpCookie(cookieName, cookieValue) { Expires = DateTime.Now.AddMinutes(cookieExpires) };
@@ -92,6 +108,37 @@ namespace Mirabeau.UI.MVC.Controllers
             Response.Cookies.Add(cookie);
 
             return cookie;
+        }
+
+        protected IRestResponse GetTokenFromAPI(LoginViewModel login)
+        {
+            var authenticationApiUrl = ConfigurationManagerHelper.ApiAuthenticationUrl;
+
+            var client = new RestClient(authenticationApiUrl);
+            var request = new RestRequest(Method.POST);
+            request.AddHeader("cache-control", "no-cache");
+            request.AddHeader("content-type", "text/plain");
+            request.AddParameter("text/plain", $"username={login.Username}&password={login.Password}&grant_type=password", ParameterType.RequestBody);
+            var tokenResponse = client.Execute(request);
+
+            if (tokenResponse.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                var token = JsonConvert.DeserializeAnonymousType(tokenResponse.Content, new
+                {
+                    token_type = "",
+                    access_token = "",
+                    expires_in = 0,
+                    Username = "",
+                    UserId = ""
+                });
+
+                var tokenExpiresIn = token.expires_in;
+
+                var tokenCookie = CreateCookie(TOKENCOOKIE, $"{token.token_type} {token.access_token}", token.expires_in);
+                var userCookie = CreateCookie(USERCOOKIE, JsonConvert.SerializeObject(token.Username), tokenExpiresIn);
+            }
+
+            return tokenResponse;
         }
 
         protected bool HasDomainNotifications(AddErrorsOnEnum addErrorsOn = AddErrorsOnEnum.ModelError)

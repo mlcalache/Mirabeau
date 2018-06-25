@@ -53,14 +53,6 @@ namespace Mirabeau.UI.MVC.Controllers
         {
             var distanceResult = _airportExhibitionService.GetDistance(iata1, iata2);
 
-            if (HasDomainNotifications(AddErrorsOnEnum.ToastMessage))
-            {
-                foreach (var n in _notification.GetNotifications())
-                {
-                    distanceResult.Notifications.Add(n.Value);
-                }
-            }
-
             var uri = new Uri(Request.Url.AbsoluteUri);
             var requested = $"{uri.Scheme}{Uri.SchemeDelimiter}{uri.Host}:{uri.Port}";
             distanceResult.Url = $"{requested}/Home/GetDistance?iata1={iata1}&iata2={iata2}";

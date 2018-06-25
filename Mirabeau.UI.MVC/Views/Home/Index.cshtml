@@ -18,6 +18,7 @@
     <link href="~/Content/css/app.min.css" rel="stylesheet" />
     <link href="~/Content/css/toastr.css" rel="stylesheet" />
     <script src="~/Scripts/toastr.js"></script>
+    <link href="~/Content/Font-Awesome/css/fontawesome-all.min.css" rel="stylesheet" />
 </head>
 <body>
 
@@ -27,10 +28,14 @@
         </div>
     </div>
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="@Url.Action("Index", "Home")">
-            <img src="~/Content/images/csharp.jpg" class="logo" />
-        </a>
+    <div class="intro">
+        <span class="logo-mirabeau">Mirabeau</span>
+        <blockquote class="quote-silver">
+            <q>We combine human centered design, technology and insights to create top-notch digital solutions. </q>
+        </blockquote>
+    </div>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-mirabeau">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -47,45 +52,105 @@
             </ul>
             @using (Html.BeginForm("Logout", "Account", FormMethod.Post, new { @class = "form-logout" }))
             {
-                <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Logout</button>
+                <button class="btn btn-outline-danger btn-sm my-2 my-sm-0" type="submit">
+                    <span class="fa fa-sign-out-alt"></span> Logout
+                </button>
             }
         </div>
     </nav>
     <div class="container">
-        <p>
-            <button class="btn btn-primary btn-sm" type="button" data-toggle="collapse" data-target="#divFilters" aria-expanded="false" aria-controls="divFilters" id="btnFilters">
-                Open filters
-            </button>
-        </p>
+        <div class="row actions">
+            <div class="col-spaced">
+                <div class="form-group">
+                    <button class="btn btn-outline-success btn-sm" type="button" id="btnGetAirports">
+                        <span class="fa fa-cloud-download-alt"></span> Get airports
+                    </button>
+                </div>
+            </div>
+            <div class="col-spaced">
+                <div class="form-group">
+                    <button class="btn btn-outline-primary btn-sm" type="button" data-toggle="collapse" data-target="#divFilters" aria-expanded="false" aria-controls="divFilters" id="btnOpenFilters">
+                        <span class="fa fa-search"></span> Open filters
+                    </button>
+                    <button class="btn btn-outline-danger btn-sm" type="button" data-toggle="collapse" data-target="#divFilters" aria-expanded="false" aria-controls="divFilters" id="btnCloseFilters">
+                        <span class="fa fa-minus-circle"></span> Close filters
+                    </button>
+                </div>
+            </div>
+            <div class="col-spaced">
+                <div class="form-group">
+                    <button class="btn btn-outline-primary btn-sm" type="button" id="btnEnableAutomaticGet">
+                        <span class="fa fa-sync-alt"></span> Enable get the airports automatically on every 5 minutes
+                    </button>
+                    <button class="btn btn-outline-danger btn-sm" type="button" id="btnDisableAutomaticGet">
+                        <span class="fa fa-ban"></span> Disable get the airports automatically on every 5 minutes
+                    </button>
+                </div>
+            </div>
+        </div>
 
         <div class="collapse" id="divFilters">
-            <div class="row">
-                <div class="col-sm">
-                    <div class="form-group">
-                        <label for="txtIATAFilter">IATA</label>
-                        <input type="text" class="form-control" id="txtIATAFilter" aria-describedby="IATAHelp" placeholder="Enter an IATA code">
-                        <small id="IATAHelp" class="form-text text-muted"><a href="https://en.wikipedia.org/wiki/IATA_airport_code" target="_blank">IATA code</a></small>
+
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Filters</h5>
+                    <hr />
+                    <div class="row">
+                        <div class="col-sm">
+                            <div class="form-group">
+                                <label for="txtIATAFilter">IATA</label>
+                                <input type="text" class="form-control form-control-sm" id="txtIATAFilter" aria-describedby="IATAHelp" placeholder="Enter an IATA code">
+                                <small id="IATAHelp" class="form-text text-muted"><a href="https://en.wikipedia.org/wiki/IATA_airport_code" target="_blank">IATA code?</a></small>
+                            </div>
+                        </div>
+                        <div class="col-sm">
+                            <div class="form-group">
+                                <label for="txtISOFilter">ISO</label>
+                                <input type="text" class="form-control form-control-sm" id="txtISOFilter" placeholder="Enter an ISO code">
+                            </div>
+                        </div>
+                        <div class="col-sm">
+                            <div class="form-group">
+                                <label for="txtNameFilter">Name</label>
+                                <input type="text" class="form-control form-control-sm" id="txtNameFilter" placeholder="Enter an Aiport name">
+                            </div>
+                        </div>
+                        <div class="col-sm">
+                            <div class="form-group">
+                                <label for="ddlTypeFilter">Type</label>
+                                <select class="form-control form-control-sm" id="ddlTypeFilter">
+                                    <option value="0">All</option>
+                                    <option value="1">Heliport</option>
+                                    <option value="2">Airport</option>
+                                    <option value="3">Closed</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm">
+                            <div class="form-group">
+                                <label for="ddlSizeFilter">Size</label>
+                                <select class="form-control form-control-sm" id="ddlSizeFilter">
+                                    <option value="0">All</option>
+                                    <option value="1">Small</option>
+                                    <option value="2">Medium</option>
+                                    <option value="3">Large</option>
+                                </select>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="col-sm">
-                    <div class="form-group">
-                        <label for="txtISOFilter">ISO</label>
-                        <input type="text" class="form-control" id="txtISOFilter" placeholder="Enter an ISO code">
-                    </div>
-                </div>
-                <div class="col-sm">
-                    <div class="form-group">
-                        <label for="txtNameFilter">Name</label>
-                        <input type="text" class="form-control" id="txtNameFilter" placeholder="Enter an Aiport name">
+                    <div class="row">
+                        <div class="col-12 text-right">
+                            <button class="btn btn-outline-warning btn-sm" id="btnClearFilter" title="Click here to clear the applied filter and reset the results.">
+                                <span class="fa fa-broom"></span> Clear filter
+                            </button>
+                            <button class="btn btn-outline-primary btn-sm" id="btnApplyFilter" title="Click here to apply the filter." disabled>
+                                <span class="fa fa-check"></span> Apply filter
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-12">
-                    <button class="btn btn-primary btn-sm" id="btnApplyFilter" title="Click here to apply the filter." disabled>Apply filter</button>
-                    <button class="btn btn-warning btn-sm" id="btnClearFilter" title="Click here to clear the applied filter and reset the results.">Clear filter</button>
-                </div>
-            </div>
+
         </div>
 
         <table class="table" id="tbl-airports">
@@ -130,6 +195,8 @@
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
     <script>
 
+        var timerID;
+
         $(document).ajaxStart(function () {
             startAjaxLoading();
         });
@@ -157,7 +224,13 @@
         };
 
         function enableDisableButtonFilters() {
-            if ($("#txtIATAFilter").val() != "" || $("#txtISOFilter").val() != "" || $("#txtNameFilter").val()) {
+            var iataOk = $("#txtIATAFilter").val() != "";
+            var isoOk = $("#txtISOFilter").val() != "";
+            var nameOk = $("#txtNameFilter").val() != "";
+            var sizeOk = $("#ddlSizeFilter").val() != "0";
+            var typeOk = $("#ddlTypeFilter").val() != "0";
+
+            if (iataOk || isoOk || nameOk || sizeOk || typeOk) {
                 $("#btnApplyFilter").removeAttr('disabled');
             } else {
                 $("#btnApplyFilter").attr('disabled', 'disabled');
@@ -200,40 +273,60 @@
             $("#lnkDistanceGetUrlValue").show();
         }
 
+        function getAirportsOnEvery5Minutes() {
+            timerID = setInterval(function () {
+                getAirports();
+            }, 5 * 60 * 1000); //5 minutes
+        }
+
         $(function () {
-            $("#btnFilters").on("click", function () {
-                if (this.innerText == "Open filters") {
-                    this.innerText = "Close filters";
-                } else {
-                    this.innerText = "Open filters";
-                }
+            $("#btnOpenFilters").on("click", function () {
+                $(this).hide();
+                $("#btnCloseFilters").show();
+            });
+
+            $("#btnCloseFilters").on("click", function () {
+                $(this).hide();
+                $("#btnOpenFilters").show();
             });
 
             $("#btnApplyFilter").on("click", function () {
                 var iataFilter = $("#txtIATAFilter").val();
                 var isoFilter = $("#txtISOFilter").val();
                 var nameFilter = $("#txtNameFilter").val();
+                var typeFilter = $("#ddlTypeFilter").val();
+                var sizeFilter = $("#ddlSizeFilter").val();
 
-                getAirports({ "IATA": iataFilter, "ISO": isoFilter, "Name": nameFilter });
+                getAirports({ "IATA": iataFilter, "ISO": isoFilter, "Name": nameFilter, "Type": typeFilter, "Size": sizeFilter });
             });
 
             $("#btnClearFilter").on("click", function () {
                 $("#txtIATAFilter").val("");
                 $("#txtISOFilter").val("");
                 $("#txtNameFilter").val("");
+                $("#ddlTypeFilter").val("0");
+                $("#ddlSizeFilter").val("0");
 
                 getAirports();
             });
 
-            $("#txIATAFilter").change(function () {
+            $("#txtIATAFilter").on("keyup", function () {
                 enableDisableButtonFilters();
             });
 
-            $("#txtISOFilter").change(function () {
+            $("#txtISOFilter").on("keyup", function () {
                 enableDisableButtonFilters();
             });
 
-            $("#txtNameFilter").change(function () {
+            $("#txtNameFilter").on("keyup", function () {
+                enableDisableButtonFilters();
+            });
+
+            $("#ddlSizeFilter").on("change", function () {
+                enableDisableButtonFilters();
+            });
+
+            $("#ddlTypeFilter").on("change", function () {
                 enableDisableButtonFilters();
             });
 
@@ -243,9 +336,31 @@
 
             $('#modalDistance').on('shown.bs.modal', function () {
                 $('#txtAiportDestination').focus();
-            })  
+            })
 
-            getAirports();
+            $("#btnEnableAutomaticGet").on("click", function () {
+                getAirportsOnEvery5Minutes();
+
+                $("#btnDisableAutomaticGet").show();
+                $("#btnEnableAutomaticGet").hide();
+            });
+
+            $("#btnDisableAutomaticGet").on("click", function () {
+                clearInterval(timerID);
+
+                $("#btnEnableAutomaticGet").show();
+                $("#btnDisableAutomaticGet").hide();
+            });
+
+            $("#btnGetAirports").on("click", function () {
+                getAirports();
+            });
+
+            $("#btnEnableAutomaticGet").hide();
+            $("#btnCloseFilters").hide();
+
+            //getAirports();
+            //getAirportsOnEvery5Minutes();
         });
     </script>
 </body>

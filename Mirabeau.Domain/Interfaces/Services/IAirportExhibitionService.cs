@@ -11,6 +11,8 @@ namespace Mirabeau.Domain.Interfaces.Services
 
         DistanceResultDTO GetDistance(string iata1, string iata2);
 
+        DistanceResultDTO GetDistance(Airport airport1, Airport airport2);
+
         IEnumerable<Airport> GetEuropeanAirports();
 
         IEnumerable<Airport> GetEuropeanAirports(AirportFilterDTO filters);

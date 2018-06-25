@@ -11,11 +11,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mirabeau.Domain", "Mirabeau
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1. Presentation", "1. Presentation", "{ECDE48A5-962C-4DBD-A79E-8D1AFB01D423}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2. Application", "2. Application", "{F967EADD-150C-44BB-8366-B6AA33A31488}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3. Application", "3. Application", "{F967EADD-150C-44BB-8366-B6AA33A31488}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3. Domain", "3. Domain", "{B17C645C-4A64-4368-ADC9-421032C2FE66}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4. Domain", "4. Domain", "{B17C645C-4A64-4368-ADC9-421032C2FE66}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4. Infra", "4. Infra", "{8C1276ED-E725-405C-BA58-56032B155E33}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5. Infra", "5. Infra", "{8C1276ED-E725-405C-BA58-56032B155E33}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mirabeau.Infra.CrossCutting.IoC", "Mirabeau.Infra.CrossCutting.IoC\Mirabeau.Infra.CrossCutting.IoC.csproj", "{6FE0A465-79EE-4057-A785-083BA3ECF56E}"
 EndProject
@@ -28,6 +28,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mirabeau.Infra.CrossCutting.Helpers", "Mirabeau.Infra.CrossCutting.Helpers\Mirabeau.Infra.CrossCutting.Helpers.csproj", "{D8D20CE9-67ED-4A8B-A9AF-C5E5CAEAAC91}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mirabeau.UI.MVC.Test", "Mirabeau.UI.MVC.Test\Mirabeau.UI.MVC.Test.csproj", "{2E3DF5C2-8A38-4A03-86D7-8D463C917E47}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2. Distributed Services", "2. Distributed Services", "{59EAFE6E-F685-40D8-B197-675C2915AAD1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mirabeau.API", "Mirabeau.API\Mirabeau.API.csproj", "{EB9C07C6-32B8-4AD5-89E2-314A7596257A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -63,6 +67,10 @@ Global
 		{2E3DF5C2-8A38-4A03-86D7-8D463C917E47}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2E3DF5C2-8A38-4A03-86D7-8D463C917E47}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2E3DF5C2-8A38-4A03-86D7-8D463C917E47}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB9C07C6-32B8-4AD5-89E2-314A7596257A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB9C07C6-32B8-4AD5-89E2-314A7596257A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB9C07C6-32B8-4AD5-89E2-314A7596257A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB9C07C6-32B8-4AD5-89E2-314A7596257A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -77,6 +85,7 @@ Global
 		{1E8508C6-9BF3-4D6F-BA15-5932EF952AF3} = {8C1276ED-E725-405C-BA58-56032B155E33}
 		{D8D20CE9-67ED-4A8B-A9AF-C5E5CAEAAC91} = {88210183-1285-4477-83B8-4CD3FF6F9C57}
 		{2E3DF5C2-8A38-4A03-86D7-8D463C917E47} = {ECDE48A5-962C-4DBD-A79E-8D1AFB01D423}
+		{EB9C07C6-32B8-4AD5-89E2-314A7596257A} = {59EAFE6E-F685-40D8-B197-675C2915AAD1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9D2A3B0B-F68C-4900-AE9D-0CDC6445270A}

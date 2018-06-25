@@ -37,6 +37,8 @@
     <Compile Include="DTOs\AirportFilterDTO.cs" />
     <Compile Include="Entities\Airport.cs" />
     <Compile Include="Entities\User.cs" />
+    <Compile Include="Enums\SizeEnum.cs" />
+    <Compile Include="Enums\TypeEnum.cs" />
     <Compile Include="Enums\ContinentsEnum.cs" />
     <Compile Include="Interfaces\Container\IDomainContainer.cs" />
     <Compile Include="Interfaces\Notifications\IDomainNotificationHandler.cs" />

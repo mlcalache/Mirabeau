@@ -2,8 +2,13 @@
 using Mirabeau.Domain.Entities;
 using Mirabeau.Domain.Interfaces.Notifications;
 using Mirabeau.Domain.Interfaces.Services;
+using Mirabeau.Infra.CrossCutting.Helpers;
 using Mirabeau.UI.MVC.Models;
 using Newtonsoft.Json;
+using RestSharp;
+using System;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Web.Mvc;
 
 namespace Mirabeau.UI.MVC.Controllers
@@ -35,20 +40,23 @@ namespace Mirabeau.UI.MVC.Controllers
         }
 
         [HttpPost]
-        public ActionResult Login(LoginViewModel login)
+        public ActionResult Login(LoginViewModel login, string url)
         {
-            var user = _mapper.Map<User>(login);
+            var tokenResponse = GetTokenFromAPI(login);
 
-            var loginValidated = _loginService.ValidateLogin(user);
-
-            if (loginValidated)
+            if (tokenResponse.StatusCode == System.Net.HttpStatusCode.OK)
             {
-                SetUserCookie(login.Username);
+                if (string.IsNullOrEmpty(url))
+                {
+                    return RedirectToAction("Index", "Home");
+                }
 
-                return RedirectToAction("Index", "Home");
+                return Redirect(url);
             }
 
-            return View();
+            AddToastWarningMessage("Invalid username or password!");
+
+            return RedirectToAction("Index", "Account");
         }
 
         [HttpPost]

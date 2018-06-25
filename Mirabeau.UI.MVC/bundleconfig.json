@@ -100,5 +100,35 @@
     "inputFiles": [
       "Scripts/jquery.validate.unobtrusive.js"
     ]
+  },
+  {
+    "outputFileName": "Content/Font-Awesome/css/fa-brands.min.css",
+    "inputFiles": [
+      "Content/Font-Awesome/css/fa-brands.css"
+    ]
+  },
+  {
+    "outputFileName": "Content/Font-Awesome/css/fa-regular.min.css",
+    "inputFiles": [
+      "Content/Font-Awesome/css/fa-regular.css"
+    ]
+  },
+  {
+    "outputFileName": "Content/Font-Awesome/css/fa-solid.min.css",
+    "inputFiles": [
+      "Content/Font-Awesome/css/fa-solid.css"
+    ]
+  },
+  {
+    "outputFileName": "Content/Font-Awesome/css/fontawesome-all.min.css",
+    "inputFiles": [
+      "Content/Font-Awesome/css/fontawesome-all.css"
+    ]
+  },
+  {
+    "outputFileName": "Content/Font-Awesome/css/fontawesome.min.css",
+    "inputFiles": [
+      "Content/Font-Awesome/css/fontawesome.css"
+    ]
   }
 ]

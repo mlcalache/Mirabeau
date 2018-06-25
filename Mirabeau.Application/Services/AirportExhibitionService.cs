@@ -76,6 +76,14 @@ namespace Mirabeau.Application.Services
                 {
                     europeanAirports = europeanAirports.Where(x => !string.IsNullOrEmpty(x.name) && x.name.ToUpper().Contains(filters.Name.ToUpper()));
                 }
+                if (filters.Size.HasValue && filters.Size.Value != 0)
+                {
+                    europeanAirports = europeanAirports.Where(x => !string.IsNullOrEmpty(x.size) && x.size.ToUpper().Contains(filters.Size.ToString().ToUpper()));
+                }
+                if (filters.Type.HasValue && filters.Type.Value != 0)
+                {
+                    europeanAirports = europeanAirports.Where(x => !string.IsNullOrEmpty(x.type) && x.type.ToUpper().Contains(filters.Type.ToString().ToUpper()));
+                }
             }
 
             return europeanAirports;
@@ -116,7 +124,14 @@ namespace Mirabeau.Application.Services
                         _notification.Add($"Airport {airport2.iata} has no longitude defined.");
                     }
 
-                    if (!_notification.HasNotifications)
+                    if (_notification.HasNotifications)
+                    {
+                        foreach (var n in _notification.GetNotifications())
+                        {
+                            distanceResult.Notifications.Add(n.Value);
+                        }
+                    }
+                    else
                     {
                         distanceResult.Distance = CalculateDistanceBetweenAirports(airport1, airport2);
                     }
@@ -125,6 +140,48 @@ namespace Mirabeau.Application.Services
             else
             {
                 _notification.Add("Both airport iata codes must be informed");
+            }
+
+            return distanceResult;
+        }
+
+        public DistanceResultDTO GetDistance(Airport airport1, Airport airport2)
+        {
+            var distanceResult = new DistanceResultDTO
+            {
+                Distance = 0
+            };
+
+            if (airport1.lat == 0)
+            {
+                _notification.Add($"Airport {airport1.iata} has no latitude defined.");
+            }
+
+            if (airport1.lon == 0)
+            {
+                _notification.Add($"Airport {airport1.iata} has no longitude defined.");
+            }
+
+            if (airport2.lat == 0)
+            {
+                _notification.Add($"Airport {airport2.iata} has no latitude defined.");
+            }
+
+            if (airport2.lon == 0)
+            {
+                _notification.Add($"Airport {airport2.iata} has no longitude defined.");
+            }
+
+            if (_notification.HasNotifications)
+            {
+                foreach (var n in _notification.GetNotifications())
+                {
+                    distanceResult.Notifications.Add(n.Value);
+                }
+            }
+            else
+            {
+                distanceResult.Distance = CalculateDistanceBetweenAirports(airport1, airport2);
             }
 
             return distanceResult;

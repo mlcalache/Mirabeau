@@ -16,6 +16,9 @@
     <script src="~/Content/Bootstrap/js/bootstrap.min.js"></script>
     <link href="~/Content/Bootstrap/css/bootstrap.min.css" rel="stylesheet" />
     <link href="~/Content/css/login.min.css" rel="stylesheet" />
+    <link href="~/Content/css/toastr.css" rel="stylesheet" />
+    <script src="~/Scripts/toastr.js"></script>
+    <link href="~/Content/Font-Awesome/css/fontawesome-all.min.css" rel="stylesheet" />
 </head>
 
 <body class="text-center">
@@ -37,8 +40,13 @@
         @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", @placeholder = "Password", @required = true, @type = "password" } })
         @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
 
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-        <p class="mt-5 mb-3 text-muted">&copy; 2017-2018</p>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">
+            <span class="fa fa-sign-in-alt"></span> Sign in
+        </button>
+        <p class="mt-5 mb-3 text-muted">Matheus de Lara Calache &copy; 2018</p>
     }
+
+
+    @Html.Partial("../Shared/_ToastrBuilder")
 </body>
 </html>
