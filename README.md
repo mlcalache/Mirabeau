@@ -25,7 +25,7 @@ Jump to:
 
 URL to clone this repository.
 ```shell
-git clone https://github.com/lucasbuetto/RPTecCom.web.site.git
+git clone https://github.com/mlcalache/Mirabeau.git
 ```
 -----
 
